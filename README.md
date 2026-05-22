@@ -4,7 +4,7 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ---
 
-# University Information
+## University Information
 
 **University:** Universiti Kuala Lumpur (UniKL MIIT)  
 **Course:** Secure Software Development  
@@ -12,7 +12,7 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ---
 
-# Team Members
+## Team Members
 
 | Name | Student ID | Role |
 |------|------------|------|
@@ -23,42 +23,40 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ---
 
-# Features
+## Features
 
 - User Registration & Authentication
 - Role-Based Access Control (RBAC)
-- Secure Task CRUD Operations
+- Secure Task CRUD System
 - REST API Integration
 - File Upload Validation
-- Audit Logging
+- Audit Logging System
 - Session Management
-- Brute-force Protection
+- Brute-force Protection (django-axes)
 - Content Security Policy (CSP)
 - Secure Password Handling
 - Admin Dashboard
 
 ---
 
-# Security Controls Implemented
+## Security Controls Implemented
 
 | OWASP Category | Implementation |
 |----------------|----------------|
 | OWASP A01 | RBAC + IDOR prevention |
 | OWASP A02 | PBKDF2 password hashing, secrets stored in `.env` |
 | OWASP A03 | ORM-only queries, template autoescaping |
-| OWASP A04 | File MIME validation, UUID filenames, upload size limits |
-| OWASP A05 | CSP headers, secure production settings |
-| OWASP A07 | django-axes lockout, session timeout, strong password policy |
-| OWASP A09 | Audit logging without storing passwords/tokens |
+| OWASP A04 | File validation, UUID filenames, 2MB upload limit |
+| OWASP A05 | CSP headers, secure production configuration |
+| OWASP A07 | django-axes lockout, session timeout, strong passwords |
+| OWASP A09 | Secure audit logging (no sensitive data stored) |
 
 ---
 
-# Prerequisites
-
-Install the following software before running the project:
+## Prerequisites
 
 - Python 3.10+
-- MySQL Server 8.0+
+- MySQL 8.0+
 - pip
 
 Optional:
@@ -67,89 +65,55 @@ Optional:
 
 ---
 
-# Windows Setup Guide
+## Windows Setup Guide
 
-## 1. Extract or Clone the Project
-
-Open PowerShell and navigate into the project folder:
-
-```powershell
+### 1. Extract Project
 cd securetask
-```
-2. Create Virtual Environment
-```powershell
+
+### 2. Create Virtual Environment
 python -m venv venv
-```
 
-3. Activate Virtual Environment
-```powershell
+### 3. Activate Virtual Environment
 venv\Scripts\activate
-```
 
-You should see:
-```powershell
-(venv)
-```
-
-4. Install Dependencies
-```powershell
+### 4. Install Dependencies
 pip install -r requirements.txt
-```
 
-5. Windows Compatibility Fix
-
-Install the Windows-compatible magic package:
-```powershell
+### 5. Install Windows Fix
 pip install python-magic-bin
-```
-6. Configure Environment Variables
 
-Copy the example environment file:
-```powershell
+### 6. Configure Environment File
 copy .env.example .env
-```
-Edit .env and configure:
-```powershell
-SECRET_KEY=change-this-secret-key
-DEBUG=True
 
+Edit `.env`:
+SECRET_KEY=change-me
+DEBUG=True
 DB_NAME=securetask_db
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_HOST=127.0.0.1
 DB_PORT=3306
-```
-7. Create MySQL Database
 
-Open MySQL:
-```powershell
-mysql -u root -p
-```
-Create database:
-```SQL
+### 7. Create Database
 CREATE DATABASE securetask_db CHARACTER SET utf8mb4;
-```
 
-8. Run Database Migrations
-```powershell
+### 8. Run Migrations
 python manage.py makemigrations accounts tasks
 python manage.py migrate
-```
-9. Create Admin Account
-```powershell
-python manage.py createsuperuser
-```
 
-10. Run Development Server
-```powershell
+### 9. Create Superuser
+python manage.py createsuperuser
+
+### 10. Run Server
 python manage.py runserver
-```
-Open browser:
-```
+
+Open:
 http://127.0.0.1:8000
-```
-Linux / macOS Setup
-```
+
+---
+
+## Linux / macOS Setup
+
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -161,45 +125,43 @@ python manage.py makemigrations accounts tasks
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
-```
-Starting and Stopping the Server
-Start Server
-```powershell
-cd securetask
+
+---
+
+## Start Server
+
 venv\Scripts\activate
 python manage.py runserver
-```
-Stop Server
 
-Press:
-```
+---
+
+## Stop Server
+
 CTRL + C
-```
-Default URLs
-Page	URL
-Home	/
-Login	/accounts/login/
-Register	/accounts/register/
-Dashboard	/dashboard/
-Admin Panel	/admin/
-API Endpoints (v1)
 
-Base URL:
-```
-http://127.0.0.1:8000/api/v1/
-```
-Method	Endpoint	Description
-GET/POST	/tasks/	List/Create tasks
-GET/PUT/DELETE	/tasks/{id}/	Retrieve/Update/Delete task
-POST	/tasks/{id}/complete/	Mark task complete
-GET	/users/	Admin user list
-GET	/audit-logs/	Audit log access
+---
 
-Authentication:
+## API Endpoints (v1)
 
-Session Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET/POST | /tasks/ | List/Create tasks |
+| GET/PUT/DELETE | /tasks/{id}/ | Retrieve/Update/Delete task |
+| POST | /tasks/{id}/complete/ | Mark task complete |
+| GET | /users/ | Admin user list |
+| GET | /audit-logs/ | Audit logs |
+
+---
+
+## Authentication
+
+Session Authentication  
 Token Authentication
-Project Structure
+
+---
+
+## Project Structure
+
 securetask/
 ├── config/
 ├── accounts/
@@ -212,39 +174,44 @@ securetask/
 ├── manage.py
 ├── requirements.txt
 └── .env.example
-Common Issues & Fixes
-1. mysql command not recognized
-Fix:
 
-Add MySQL bin folder to Windows PATH.
+---
 
-Example:
-```
+## Common Issues & Fixes
+
+mysql command not recognized:
 C:\Program Files\MySQL\MySQL Server 8.0\bin
-```
-2. No module named 'magic'
-Fix:
-```
+
+No module named 'magic':
 pip install python-magic-bin
-```
-3. Table does not exist
-Fix:
-```
+
+Table does not exist:
 python manage.py makemigrations
 python manage.py migrate
-```
-Development Notes
-Development mode uses DEBUG=True
-Production should use:
-DEBUG=False
-HTTPS
-Secure cookies
-HSTS enabled
-Security Notes
-Never commit .env into version control.
-Uploaded profile images use UUID filenames.
-User passwords are securely hashed using Django authentication.
-Secure session handling is enabled.
-Authors
+
+---
+
+## Development Notes
+
+DEBUG=True for development  
+Production must use:
+- DEBUG=False
+- HTTPS enabled
+- Secure cookies enabled
+- HSTS enabled
+
+---
+
+## Security Notes
+
+- Never commit .env to GitHub
+- Passwords hashed using Django auth
+- UUID filenames for uploads
+- CSP headers enabled
+- Secure sessions enabled
+
+---
+
+## Authors
 
 Developed for educational and cybersecurity learning purposes at UniKL MIIT.
