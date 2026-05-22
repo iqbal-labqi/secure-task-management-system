@@ -75,29 +75,41 @@ Open PowerShell and navigate into the project folder:
 
 ```powershell
 cd securetask
+```
 2. Create Virtual Environment
+```powershell
 python -m venv venv
+```
+
 3. Activate Virtual Environment
+```powershell
 venv\Scripts\activate
+```
 
 You should see:
-
+```powershell
 (venv)
+```
+
 4. Install Dependencies
+```powershell
 pip install -r requirements.txt
+```
+
 5. Windows Compatibility Fix
 
 Install the Windows-compatible magic package:
-
+```powershell
 pip install python-magic-bin
+```
 6. Configure Environment Variables
 
 Copy the example environment file:
-
+```powershell
 copy .env.example .env
-
+```
 Edit .env and configure:
-
+```powershell
 SECRET_KEY=change-this-secret-key
 DEBUG=True
 
@@ -106,27 +118,38 @@ DB_USER=root
 DB_PASSWORD=yourpassword
 DB_HOST=127.0.0.1
 DB_PORT=3306
+```
 7. Create MySQL Database
 
 Open MySQL:
-
+```powershell
 mysql -u root -p
-
+```
 Create database:
-
+```SQL
 CREATE DATABASE securetask_db CHARACTER SET utf8mb4;
+```
+
 8. Run Database Migrations
+```powershell
 python manage.py makemigrations accounts tasks
 python manage.py migrate
+```
 9. Create Admin Account
+```powershell
 python manage.py createsuperuser
+```
+
 10. Run Development Server
+```powershell
 python manage.py runserver
-
+```
 Open browser:
-
+```
 http://127.0.0.1:8000
+```
 Linux / macOS Setup
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -138,16 +161,20 @@ python manage.py makemigrations accounts tasks
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+```
 Starting and Stopping the Server
 Start Server
+```powershell
 cd securetask
 venv\Scripts\activate
 python manage.py runserver
+```
 Stop Server
 
 Press:
-
+```
 CTRL + C
+```
 Default URLs
 Page	URL
 Home	/
@@ -158,8 +185,9 @@ Admin Panel	/admin/
 API Endpoints (v1)
 
 Base URL:
-
+```
 http://127.0.0.1:8000/api/v1/
+```
 Method	Endpoint	Description
 GET/POST	/tasks/	List/Create tasks
 GET/PUT/DELETE	/tasks/{id}/	Retrieve/Update/Delete task
@@ -191,15 +219,20 @@ Fix:
 Add MySQL bin folder to Windows PATH.
 
 Example:
-
+```
 C:\Program Files\MySQL\MySQL Server 8.0\bin
+```
 2. No module named 'magic'
 Fix:
+```
 pip install python-magic-bin
+```
 3. Table does not exist
 Fix:
+```
 python manage.py makemigrations
 python manage.py migrate
+```
 Development Notes
 Development mode uses DEBUG=True
 Production should use:
