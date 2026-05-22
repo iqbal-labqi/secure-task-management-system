@@ -187,18 +187,7 @@ securetask/
 ├── manage.py
 ├── requirements.txt
 └── .env.example
-securetask/
-├── config/
-├── accounts/
-├── tasks/
-├── api/
-├── templates/
-├── static/
-├── media/
-├── logs/
-├── manage.py
-├── requirements.txt
-└── .env.example
+
 ```
 ---
 
