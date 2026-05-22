@@ -68,24 +68,31 @@ Optional:
 ## Windows Setup Guide
 
 ### 1. Extract Project
+```powershell
 cd securetask
-
+```
 ### 2. Create Virtual Environment
+```powershell
 python -m venv venv
-
+```
 ### 3. Activate Virtual Environment
+```powershell
 venv\Scripts\activate
-
+```
 ### 4. Install Dependencies
+```powershell
 pip install -r requirements.txt
-
+```
 ### 5. Install Windows Fix
+```powershell
 pip install python-magic-bin
-
+```
 ### 6. Configure Environment File
+```powershell
 copy .env.example .env
-
+```
 Edit `.env`:
+```powershell
 SECRET_KEY=change-me
 DEBUG=True
 DB_NAME=securetask_db
@@ -93,27 +100,32 @@ DB_USER=root
 DB_PASSWORD=yourpassword
 DB_HOST=127.0.0.1
 DB_PORT=3306
-
+```
 ### 7. Create Database
+```SQL
 CREATE DATABASE securetask_db CHARACTER SET utf8mb4;
-
+```
 ### 8. Run Migrations
+```powershell
 python manage.py makemigrations accounts tasks
 python manage.py migrate
-
+```
 ### 9. Create Superuser
+```powershell
 python manage.py createsuperuser
-
+```
 ### 10. Run Server
+```powershell
 python manage.py runserver
-
+```
 Open:
+```powershell
 http://127.0.0.1:8000
-
+```
 ---
 
 ## Linux / macOS Setup
-
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -125,20 +137,21 @@ python manage.py makemigrations accounts tasks
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
-
+```
 ---
 
 ## Start Server
-
+```powershell
+cd securetask
 venv\Scripts\activate
 python manage.py runserver
-
+```
 ---
 
 ## Stop Server
-
+```powershell
 CTRL + C
-
+```
 ---
 
 ## API Endpoints (v1)
