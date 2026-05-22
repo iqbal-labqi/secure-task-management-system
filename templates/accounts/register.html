@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block auth_content %}
+<div class="auth-card-container auth-card-wide">
+  <div class="auth-card">
+    <div class="auth-brand text-center mb-4">
+      <div class="brand-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h2 class="fw-700 mt-2">Create Account</h2>
+      <p class="text-muted small">SecureTask — UniKL MIIT</p>
+    </div>
+
+    <form method="post" action="{% url 'register' %}" novalidate>
+      {% csrf_token %}
+      <div class="row g-3">
+
+        <div class="col-md-6">
+          <label class="form-label fw-500">First Name</label>
+          <input type="text" name="first_name" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                 value="{{ form.first_name.value|default:'' }}" maxlength="50" required placeholder="First name">
+          {% if form.first_name.errors %}<div class="invalid-feedback">{{ form.first_name.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-500">Last Name</label>
+          <input type="text" name="last_name" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                 value="{{ form.last_name.value|default:'' }}" maxlength="50" placeholder="Last name">
+          {% if form.last_name.errors %}<div class="invalid-feedback">{{ form.last_name.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-500">Username</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+            <input type="text" name="username" class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                   value="{{ form.username.value|default:'' }}" maxlength="150" required placeholder="Choose a username">
+          </div>
+          {% if form.username.errors %}<div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-500">Email Address</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                   value="{{ form.email.value|default:'' }}" required placeholder="your@email.com">
+          </div>
+          {% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-500">Password</label>
+          <input type="password" name="password1" class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+                 autocomplete="new-password" required placeholder="Min 8 characters">
+          {% if form.password1.errors %}<div class="text-danger small mt-1">{{ form.password1.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-500">Confirm Password</label>
+          <input type="password" name="password2" class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+                 autocomplete="new-password" required placeholder="Repeat password">
+          {% if form.password2.errors %}<div class="text-danger small mt-1">{{ form.password2.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="col-12">
+          <div class="password-rules bg-light rounded p-3 small">
+            <strong><i class="fa-solid fa-info-circle me-1"></i>Password Requirements:</strong>
+            <ul class="mb-0 mt-1 ps-3">
+              <li>At least 8 characters</li>
+              <li>Cannot be too similar to your username</li>
+              <li>Cannot be a commonly used password</li>
+              <li>Cannot be entirely numeric</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100 btn-lg fw-600">
+            <i class="fa-solid fa-user-plus me-2"></i>Create Account
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <hr class="my-4">
+    <p class="text-center text-muted small mb-0">
+      Already have an account? <a href="{% url 'login' %}" class="fw-600">Sign in</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

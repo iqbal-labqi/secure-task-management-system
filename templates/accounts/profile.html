@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="page-header mb-4">
+  <h3 class="fw-700 mb-1"><i class="fa-solid fa-user-circle me-2 text-primary"></i>My Profile</h3>
+  <p class="text-muted small mb-0">Update your personal information and settings</p>
+</div>
+
+<div class="row g-4">
+  <!-- Profile Form -->
+  <div class="col-lg-8">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header">
+        <h6 class="fw-600 mb-0"><i class="fa-solid fa-id-card me-2"></i>Personal Information</h6>
+      </div>
+      <div class="card-body">
+        {# SECURITY: multipart/form-data required for file upload; CSRF included #}
+        <form method="post" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-500">First Name</label>
+              <input type="text" name="first_name" class="form-control"
+                     value="{{ user_form.first_name.value|default:'' }}" maxlength="50">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-500">Last Name</label>
+              <input type="text" name="last_name" class="form-control"
+                     value="{{ user_form.last_name.value|default:'' }}" maxlength="50">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-500">Email Address</label>
+              <input type="email" name="email" class="form-control"
+                     value="{{ user_form.email.value|default:'' }}" required>
+              {% if user_form.email.errors %}
+              <div class="text-danger small mt-1">{{ user_form.email.errors.0 }}</div>
+              {% endif %}
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-500">Bio</label>
+              <textarea name="bio" class="form-control" rows="3" maxlength="300"
+                        placeholder="Short bio…">{{ profile_form.bio.value|default:'' }}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-500">Phone</label>
+              <input type="text" name="phone" class="form-control"
+                     value="{{ profile_form.phone.value|default:'' }}" maxlength="20">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-500">Profile Image</label>
+              {# SECURITY: File validated server-side for MIME + extension — OWASP A04 #}
+              <input type="file" name="avatar" class="form-control" accept="image/*">
+              <div class="form-text">JPEG, PNG, GIF, WebP · Max 2 MB</div>
+              {% if profile_form.avatar.errors %}
+              <div class="text-danger small mt-1">{{ profile_form.avatar.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="mt-4">
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-floppy-disk me-1"></i>Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h6 class="fw-600 mb-0"><i class="fa-solid fa-key me-2"></i>Change Password</h6>
+      </div>
+      <div class="card-body">
+        <a href="{% url 'change_password' %}" class="btn btn-outline-warning">
+          <i class="fa-solid fa-lock-open me-1"></i>Change Password
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Avatar Preview -->
+  <div class="col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body text-center py-4">
+        {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" alt="Profile" class="profile-avatar mb-3">
+        {% else %}
+        <div class="profile-avatar-placeholder mb-3">
+          <i class="fa-solid fa-user fa-3x text-muted"></i>
+        </div>
+        {% endif %}
+        <h6 class="fw-600">{{ user.get_full_name|default:user.username }}</h6>
+        <p class="text-muted small">{{ user.email }}</p>
+        <span class="badge bg-{% if user.profile.is_admin %}danger{% else %}primary{% endif %}">
+          {{ user.profile.get_role_display }}
+        </span>
+        <hr>
+        <div class="text-muted small">
+          <div><strong>Joined:</strong> {{ user.date_joined|date:"M d, Y" }}</div>
+          <div><strong>Last Login:</strong> {{ user.last_login|date:"M d, Y H:i"|default:"—" }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

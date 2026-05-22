@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Task{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h5 class="fw-600 mb-0">
+          <i class="fa-solid fa-{% if action == 'Create' %}plus-circle{% else %}pen-to-square{% endif %} me-2 text-primary"></i>
+          {{ action }} Task
+        </h5>
+      </div>
+      <div class="card-body">
+        {# SECURITY: CSRF token mandatory — OWASP A01 #}
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-500">
+              Title <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="title"
+                   class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                   value="{{ form.title.value|default:'' }}"
+                   maxlength="200" required placeholder="Task title…">
+            {% if form.title.errors %}
+            <div class="invalid-feedback">{{ form.title.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-500">Description</label>
+            <textarea name="description"
+                      class="form-control {% if form.description.errors %}is-invalid{% endif %}"
+                      rows="4" maxlength="1000"
+                      placeholder="Optional task details…">{{ form.description.value|default:'' }}</textarea>
+            {% if form.description.errors %}
+            <div class="invalid-feedback">{{ form.description.errors.0 }}</div>
+            {% endif %}
+            <div class="form-text">Max 1000 characters</div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-4">
+              <label class="form-label fw-500">Priority</label>
+              <select name="priority" class="form-select">
+                <option value="low"    {% if form.priority.value == 'low' %}selected{% endif %}>🟢 Low</option>
+                <option value="medium" {% if form.priority.value == 'medium' or not form.priority.value %}selected{% endif %}>🟡 Medium</option>
+                <option value="high"   {% if form.priority.value == 'high' %}selected{% endif %}>🔴 High</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-500">Status</label>
+              <select name="status" class="form-select">
+                <option value="todo"        {% if form.status.value == 'todo' or not form.status.value %}selected{% endif %}>📋 To Do</option>
+                <option value="in_progress" {% if form.status.value == 'in_progress' %}selected{% endif %}>⏳ In Progress</option>
+                <option value="completed"   {% if form.status.value == 'completed' %}selected{% endif %}>✅ Completed</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-500">Due Date</label>
+              <input type="date" name="due_date"
+                     class="form-control {% if form.due_date.errors %}is-invalid{% endif %}"
+                     value="{{ form.due_date.value|default:'' }}">
+              {% if form.due_date.errors %}
+              <div class="invalid-feedback">{{ form.due_date.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 justify-content-end mt-4">
+            <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">
+              <i class="fa-solid fa-xmark me-1"></i>Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-{% if action == 'Create' %}plus{% else %}floppy-disk{% endif %} me-1"></i>
+              {{ action }} Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
