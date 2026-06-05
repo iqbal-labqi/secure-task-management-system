@@ -228,4 +228,4 @@ Production must use:
 
 ## Authors
 
-Developed for educational and cybersecurity learning purposes at UniKL MIIT.
+Developed for educational and cybersecurity learning purposes at University of Kuala Lumpur MIIT.
