@@ -6,7 +6,7 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ## University Information
 
-**University:** Universiti Kuala Lumpur (UniKL MIIT)  
+**University:** UNIKL MIIT
 **Course:** Secure Software Development  
 **Technology Stack:** Django 4.2 · MySQL · Bootstrap 5 · Django REST Framework
 
