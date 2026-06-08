@@ -207,9 +207,9 @@ python manage.py migrate
 
 ## Development Notes
 
-DEBUG=True for development  
+DEBUG = True for development  
 Production must use:
-- DEBUG=False
+- DEBUG = False
 - HTTPS enabled
 - Secure cookies enabled
 - HSTS enabled
