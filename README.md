@@ -14,12 +14,12 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ## Team Members
 
-| Name | Student ID | Role |
-|------|------------|------|
-| Luqmanul Hafiz Bin Ahmad Fairul | 52215125409 | Lead Developer & Security Architect |
-| Muhammad Iqbal Bin Ruslan | 52215125730 | Backend Developer & Database Engineer |
-| Muhammad Akmal Hakim bin Mohd Yuzlan | 52215125582 | Frontend Developer & UI/UX Designer |
-| Muhamad Fareez Aiman bin Rozaiman | 52215125751 | QA Engineer & Security Tester |
+| Name                                 |Student ID   | Role                                  |
+|--------------------------------------|-------------|---------------------------------------|
+| Luqmanul Hafiz Bin Ahmad Fairul      | 52215125409 | Lead Developer & Security Architect   |
+| Muhammad Iqbal Bin Ruslan            | 52215125730 | Backend Developer & Database Engineer |
+| Muhammad Akmal Hakim bin Mohd Yuzlan | 52215125582 | Frontend Developer & UI/UX Designer   |
+| Muhamad Fareez Aiman bin Rozaiman    | 52215125751 | QA Engineer & Security Tester         |
 
 ---
 
