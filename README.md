@@ -166,13 +166,13 @@ CTRL + C
 
 ## API Endpoints (v1)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET/POST | /tasks/ | List/Create tasks |
-| GET/PUT/DELETE | /tasks/{id}/ | Retrieve/Update/Delete task |
-| POST | /tasks/{id}/complete/ | Mark task complete |
-| GET | /users/ | Admin user list |
-| GET | /audit-logs/ | Audit logs |
+| Method         | Endpoint              | Description                 |
+|----------------|-----------------------|-----------------------------|
+| GET/POST       | /tasks/               | List/Create tasks           |
+| GET/PUT/DELETE | /tasks/{id}/          | Retrieve/Update/Delete task |
+| POST           | /tasks/{id}/complete/ | Mark task complete          |
+| GET            | /users/               | Admin user list             |
+| GET            | /audit-logs/          | Audit logs                  |
 
 ---
 
