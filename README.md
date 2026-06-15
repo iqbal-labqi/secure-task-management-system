@@ -51,15 +51,15 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ## Security Controls Implemented
 
-| OWASP Category | Implementation |
-|----------------|----------------|
-| OWASP A01 | RBAC + IDOR prevention |
-| OWASP A02 | PBKDF2 password hashing, secrets stored in `.env` |
-| OWASP A03 | ORM-only queries, template autoescaping |
-| OWASP A04 | File validation, UUID filenames, 2MB upload limit |
-| OWASP A05 | CSP headers, secure production configuration |
-| OWASP A07 | django-axes lockout, session timeout, strong passwords |
-| OWASP A09 | Secure audit logging (no sensitive data stored) |
+| OWASP Category | Implementation                                         |
+|----------------|--------------------------------------------------------|
+| OWASP A01      | RBAC + IDOR prevention                                 |
+| OWASP A02      | PBKDF2 password hashing, secrets stored in `.env`      |
+| OWASP A03      | ORM-only queries, template autoescaping                |
+| OWASP A04      | File validation, UUID filenames, 2MB upload limit      |
+| OWASP A05      | CSP headers, secure production configuration           |
+| OWASP A07      | django-axes lockout, session timeout, strong passwords |
+| OWASP A09      | Secure audit logging (no sensitive data stored)        |
 
 ---
 
