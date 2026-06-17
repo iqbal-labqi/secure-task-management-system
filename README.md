@@ -1,4 +1,4 @@
-# SecureTask — Secure Task Management System
+# SecureTask - Secure Task Management System
 
 SecureTask is a secure web-based task management system developed using Django and MySQL, designed according to OWASP Top 10 and OWASP ASVS security practices.
 
