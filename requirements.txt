@@ -9,4 +9,6 @@ bleach==6.1.0
 python-decouple==3.8
 django-axes==6.4.0
 whitenoise==6.7.0
-gunicorn==22.0.0
+gunicorn==23.0.0
+sqlparse>=0.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
