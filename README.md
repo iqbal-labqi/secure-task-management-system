@@ -39,6 +39,51 @@ SecureTask is a secure web-based task management system developed using Django a
 
 ---
 
+## Login Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+## Registration Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+## Dashboard
+
+![](media/profiles/Manage_Users_Admin.png)
+
+## My Tasks Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+
+## New Task Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+
+## Profile Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+
+## Change Password Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+
+## Developers Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+## •	Developers 2 Page
+
+![](media/profiles/Manage_Users_Admin.png)
+
+
+## System terminal log
+
+![](media/profiles/Manage_Users_Admin.png)
+
 ## Admin Manage User
 
 ![](media/profiles/Manage_Users_Admin.png)
