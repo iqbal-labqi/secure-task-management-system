@@ -51,7 +51,10 @@ def register_view(request):
         user = form.save(commit=False)
         user.email = form.cleaned_data['email']
         user.save()
-        UserProfile.objects.create(user=user, role='user')
+
+        profile, created = UserProfile.objects.get_or_create(user=user)
+        profile.role = 'user'
+        profile.save()
         log_event(request, 'register', f"New user registered: {user.username}")
         messages.success(request, "Account created! Please log in.")
         return redirect('login')
