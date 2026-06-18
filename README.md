@@ -231,14 +231,14 @@ Token Authentication
 ## Project Structure
 ```text
 securetask/
-├── config/
 ├── accounts/
-├── tasks/
 ├── api/
-├── templates/
-├── static/
-├── media/
+├── config/
 ├── logs/
+├── media/
+├── static/
+├── tasks/
+├── templates/
 ├── manage.py
 ├── requirements.txt
 └── .env.example
